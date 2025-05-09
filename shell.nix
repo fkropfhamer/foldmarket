@@ -7,5 +7,7 @@ pkgs.mkShell {
     pkgs.protoc-gen-go
     pkgs.protoc-gen-go-grpc
     pkgs.grpcurl
+    pkgs.sqlc
+    pkgs.go-migrate
   ];
 }

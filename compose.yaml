@@ -10,3 +10,11 @@ services:
       - KURRENTDB_ENABLE_ATOM_PUB_OVER_HTTP=true
     ports:
       - "2113:2113"
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: marketdb
+    ports:
+      - "5432:5432"

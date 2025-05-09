@@ -23,7 +23,7 @@ const (
 
 type WithdrawRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	AccountId     string                 `protobuf:"bytes,1,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"`
+	AccountId     int32                  `protobuf:"varint,1,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"`
 	Amount        int64                  `protobuf:"varint,2,opt,name=amount,proto3" json:"amount,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -59,11 +59,11 @@ func (*WithdrawRequest) Descriptor() ([]byte, []int) {
 	return file_market_market_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *WithdrawRequest) GetAccountId() string {
+func (x *WithdrawRequest) GetAccountId() int32 {
 	if x != nil {
 		return x.AccountId
 	}
-	return ""
+	return 0
 }
 
 func (x *WithdrawRequest) GetAmount() int64 {
@@ -75,7 +75,7 @@ func (x *WithdrawRequest) GetAmount() int64 {
 
 type WithdrawResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	AccountId     string                 `protobuf:"bytes,1,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"`
+	AccountId     int32                  `protobuf:"varint,1,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"`
 	NewBalance    int64                  `protobuf:"varint,2,opt,name=new_balance,json=newBalance,proto3" json:"new_balance,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -111,11 +111,11 @@ func (*WithdrawResponse) Descriptor() ([]byte, []int) {
 	return file_market_market_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *WithdrawResponse) GetAccountId() string {
+func (x *WithdrawResponse) GetAccountId() int32 {
 	if x != nil {
 		return x.AccountId
 	}
-	return ""
+	return 0
 }
 
 func (x *WithdrawResponse) GetNewBalance() int64 {
@@ -127,7 +127,7 @@ func (x *WithdrawResponse) GetNewBalance() int64 {
 
 type DepositRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	AccountId     string                 `protobuf:"bytes,1,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"`
+	AccountId     int32                  `protobuf:"varint,1,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"`
 	Amount        int64                  `protobuf:"varint,2,opt,name=amount,proto3" json:"amount,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -163,11 +163,11 @@ func (*DepositRequest) Descriptor() ([]byte, []int) {
 	return file_market_market_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *DepositRequest) GetAccountId() string {
+func (x *DepositRequest) GetAccountId() int32 {
 	if x != nil {
 		return x.AccountId
 	}
-	return ""
+	return 0
 }
 
 func (x *DepositRequest) GetAmount() int64 {
@@ -179,7 +179,7 @@ func (x *DepositRequest) GetAmount() int64 {
 
 type DepositResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	AccountId     string                 `protobuf:"bytes,1,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"`
+	AccountId     int32                  `protobuf:"varint,1,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"`
 	NewBalance    int64                  `protobuf:"varint,2,opt,name=new_balance,json=newBalance,proto3" json:"new_balance,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -215,11 +215,11 @@ func (*DepositResponse) Descriptor() ([]byte, []int) {
 	return file_market_market_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *DepositResponse) GetAccountId() string {
+func (x *DepositResponse) GetAccountId() int32 {
 	if x != nil {
 		return x.AccountId
 	}
-	return ""
+	return 0
 }
 
 func (x *DepositResponse) GetNewBalance() int64 {
@@ -231,7 +231,7 @@ func (x *DepositResponse) GetNewBalance() int64 {
 
 type GetBalanceRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	AccountId     string                 `protobuf:"bytes,1,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"`
+	AccountId     int32                  `protobuf:"varint,1,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -266,16 +266,16 @@ func (*GetBalanceRequest) Descriptor() ([]byte, []int) {
 	return file_market_market_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *GetBalanceRequest) GetAccountId() string {
+func (x *GetBalanceRequest) GetAccountId() int32 {
 	if x != nil {
 		return x.AccountId
 	}
-	return ""
+	return 0
 }
 
 type GetBalanceResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	AccountId     string                 `protobuf:"bytes,1,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"`
+	AccountId     int32                  `protobuf:"varint,1,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"`
 	Balance       int64                  `protobuf:"varint,2,opt,name=balance,proto3" json:"balance,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -311,11 +311,11 @@ func (*GetBalanceResponse) Descriptor() ([]byte, []int) {
 	return file_market_market_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *GetBalanceResponse) GetAccountId() string {
+func (x *GetBalanceResponse) GetAccountId() int32 {
 	if x != nil {
 		return x.AccountId
 	}
-	return ""
+	return 0
 }
 
 func (x *GetBalanceResponse) GetBalance() int64 {
@@ -332,28 +332,28 @@ const file_market_market_proto_rawDesc = "" +
 	"\x13market/market.proto\x12\x06market\"H\n" +
 	"\x0fWithdrawRequest\x12\x1d\n" +
 	"\n" +
-	"account_id\x18\x01 \x01(\tR\taccountId\x12\x16\n" +
+	"account_id\x18\x01 \x01(\x05R\taccountId\x12\x16\n" +
 	"\x06amount\x18\x02 \x01(\x03R\x06amount\"R\n" +
 	"\x10WithdrawResponse\x12\x1d\n" +
 	"\n" +
-	"account_id\x18\x01 \x01(\tR\taccountId\x12\x1f\n" +
+	"account_id\x18\x01 \x01(\x05R\taccountId\x12\x1f\n" +
 	"\vnew_balance\x18\x02 \x01(\x03R\n" +
 	"newBalance\"G\n" +
 	"\x0eDepositRequest\x12\x1d\n" +
 	"\n" +
-	"account_id\x18\x01 \x01(\tR\taccountId\x12\x16\n" +
+	"account_id\x18\x01 \x01(\x05R\taccountId\x12\x16\n" +
 	"\x06amount\x18\x02 \x01(\x03R\x06amount\"Q\n" +
 	"\x0fDepositResponse\x12\x1d\n" +
 	"\n" +
-	"account_id\x18\x01 \x01(\tR\taccountId\x12\x1f\n" +
+	"account_id\x18\x01 \x01(\x05R\taccountId\x12\x1f\n" +
 	"\vnew_balance\x18\x02 \x01(\x03R\n" +
 	"newBalance\"2\n" +
 	"\x11GetBalanceRequest\x12\x1d\n" +
 	"\n" +
-	"account_id\x18\x01 \x01(\tR\taccountId\"M\n" +
+	"account_id\x18\x01 \x01(\x05R\taccountId\"M\n" +
 	"\x12GetBalanceResponse\x12\x1d\n" +
 	"\n" +
-	"account_id\x18\x01 \x01(\tR\taccountId\x12\x18\n" +
+	"account_id\x18\x01 \x01(\x05R\taccountId\x12\x18\n" +
 	"\abalance\x18\x02 \x01(\x03R\abalance2\xce\x01\n" +
 	"\x06Market\x12E\n" +
 	"\n" +

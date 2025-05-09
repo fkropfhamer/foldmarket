@@ -6,20 +6,24 @@ import (
 	"errors"
 	"fmt"
 	"foldmarket/event_stream"
+	"foldmarket/read_model"
 	"io"
 
 	"github.com/kurrent-io/KurrentDB-Client-Go/kurrentdb"
 )
 
 func main() {
+	ctx := context.Background()
 	es, err := event_stream.GetEventStreamClient()
-	stream, err := es.ReadStream(context.Background(), "market-stream", kurrentdb.ReadStreamOptions{}, 10)
+	stream, err := es.ReadStream(ctx, "market-stream", kurrentdb.ReadStreamOptions{}, 10)
 
 	if err != nil {
 		panic(err)
 	}
 
 	defer stream.Close()
+
+	accountBalances := make(map[int32]int64)
 
 	for {
 		event, err := stream.Recv()
@@ -32,18 +36,46 @@ func main() {
 			panic(err)
 		}
 
-		var testEvent any = nil
 		if event.Event.EventType == event_stream.DepositEventType {
-			testEvent = event_stream.DepositEvent{}
-			err = json.Unmarshal(event.Event.Data, &testEvent)
+			depositEvent := event_stream.DepositEvent{}
+			err = json.Unmarshal(event.Event.Data, &depositEvent)
+
+			if err != nil {
+				panic(err)
+			}
+
+			accountBalances[depositEvent.AccountId] += depositEvent.Amount
 		} else if event.Event.EventType == event_stream.WithdrawEventType {
-			testEvent = event_stream.WithdrawEvent{}
-			err = json.Unmarshal(event.Event.Data, &testEvent)
+			withdrawEvent := event_stream.WithdrawEvent{}
+			err = json.Unmarshal(event.Event.Data, &withdrawEvent)
+
+			if err != nil {
+				panic(err)
+			}
+
+			accountBalances[withdrawEvent.AccountId] -= withdrawEvent.Amount
+
 		} else {
 			fmt.Println("Unknown event type")
 			continue
 		}
+	}
 
-		fmt.Println(testEvent)
+	stream.Close()
+
+	conn, err := read_model.GetConnection()
+	defer conn.Close(ctx)
+	queries := read_model.New(conn)
+
+	queries.DeleteAllAccounts(ctx)
+	for accountId, balance := range accountBalances {
+		_, err := queries.CreateAccount(ctx, read_model.CreateAccountParams{
+			ID:      accountId,
+			Balance: balance,
+		})
+
+		if err != nil {
+			panic(err)
+		}
 	}
 }

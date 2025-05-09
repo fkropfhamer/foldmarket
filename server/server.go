@@ -12,17 +12,25 @@ import (
 
 	"foldmarket/event_stream"
 	pb "foldmarket/market"
+	"foldmarket/read_model"
 )
 
 type marketServer struct {
 	pb.UnimplementedMarketServer
-	es *kurrentdb.Client
+	es      *kurrentdb.Client
+	queries *read_model.Queries
 }
 
 func (s *marketServer) GetBalance(ctx context.Context, req *pb.GetBalanceRequest) (*pb.GetBalanceResponse, error) {
+	acc, err := s.queries.GetAccount(ctx, req.AccountId)
+
+	if err != nil {
+		return nil, err
+	}
+
 	return &pb.GetBalanceResponse{
-		AccountId: req.AccountId,
-		Balance:   100.0,
+		AccountId: acc.ID,
+		Balance:   acc.Balance,
 	}, nil
 }
 
@@ -78,19 +86,24 @@ func (s *marketServer) Withdraw(ctx context.Context, req *pb.WithdrawRequest) (*
 	}, nil
 }
 
-func newServer(es *kurrentdb.Client) *marketServer {
-	s := &marketServer{es: es}
+func newServer(es *kurrentdb.Client, queries *read_model.Queries) *marketServer {
+	s := &marketServer{es: es, queries: queries}
 	return s
 }
 
 func main() {
 	fmt.Println("Hello, World!")
+	ctx := context.Background()
 
 	es, _ := event_stream.GetEventStreamClient()
+	defer es.Close()
+	conn, _ := read_model.GetConnection()
+	defer conn.Close(ctx)
+	queries := read_model.New(conn)
 
 	lis, _ := net.Listen("tcp", "localhost:50051")
 	grpcServer := grpc.NewServer()
-	pb.RegisterMarketServer(grpcServer, newServer(es))
+	pb.RegisterMarketServer(grpcServer, newServer(es, queries))
 
 	reflection.Register(grpcServer)
 
