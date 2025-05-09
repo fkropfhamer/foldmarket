@@ -32,12 +32,18 @@ func main() {
 			panic(err)
 		}
 
-		test_event := event_stream.DepositEvent{}
-		err = json.Unmarshal(event.Event.Data, &test_event)
+		var testEvent any = nil
+		if event.Event.EventType == event_stream.DepositEventType {
+			testEvent = event_stream.DepositEvent{}
+			err = json.Unmarshal(event.Event.Data, &testEvent)
+		} else if event.Event.EventType == event_stream.WithdrawEventType {
+			testEvent = event_stream.WithdrawEvent{}
+			err = json.Unmarshal(event.Event.Data, &testEvent)
+		} else {
+			fmt.Println("Unknown event type")
+			continue
+		}
 
-		fmt.Println(test_event)
-
-		// Doing something productive with the event
-		fmt.Println(event)
+		fmt.Println(testEvent)
 	}
 }

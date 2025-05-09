@@ -21,6 +21,110 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type WithdrawRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	AccountId     string                 `protobuf:"bytes,1,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"`
+	Amount        int64                  `protobuf:"varint,2,opt,name=amount,proto3" json:"amount,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *WithdrawRequest) Reset() {
+	*x = WithdrawRequest{}
+	mi := &file_market_market_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *WithdrawRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*WithdrawRequest) ProtoMessage() {}
+
+func (x *WithdrawRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_market_market_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use WithdrawRequest.ProtoReflect.Descriptor instead.
+func (*WithdrawRequest) Descriptor() ([]byte, []int) {
+	return file_market_market_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *WithdrawRequest) GetAccountId() string {
+	if x != nil {
+		return x.AccountId
+	}
+	return ""
+}
+
+func (x *WithdrawRequest) GetAmount() int64 {
+	if x != nil {
+		return x.Amount
+	}
+	return 0
+}
+
+type WithdrawResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	AccountId     string                 `protobuf:"bytes,1,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"`
+	NewBalance    int64                  `protobuf:"varint,2,opt,name=new_balance,json=newBalance,proto3" json:"new_balance,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *WithdrawResponse) Reset() {
+	*x = WithdrawResponse{}
+	mi := &file_market_market_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *WithdrawResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*WithdrawResponse) ProtoMessage() {}
+
+func (x *WithdrawResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_market_market_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use WithdrawResponse.ProtoReflect.Descriptor instead.
+func (*WithdrawResponse) Descriptor() ([]byte, []int) {
+	return file_market_market_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *WithdrawResponse) GetAccountId() string {
+	if x != nil {
+		return x.AccountId
+	}
+	return ""
+}
+
+func (x *WithdrawResponse) GetNewBalance() int64 {
+	if x != nil {
+		return x.NewBalance
+	}
+	return 0
+}
+
 type DepositRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	AccountId     string                 `protobuf:"bytes,1,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"`
@@ -31,7 +135,7 @@ type DepositRequest struct {
 
 func (x *DepositRequest) Reset() {
 	*x = DepositRequest{}
-	mi := &file_market_market_proto_msgTypes[0]
+	mi := &file_market_market_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -43,7 +147,7 @@ func (x *DepositRequest) String() string {
 func (*DepositRequest) ProtoMessage() {}
 
 func (x *DepositRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_market_market_proto_msgTypes[0]
+	mi := &file_market_market_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -56,7 +160,7 @@ func (x *DepositRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DepositRequest.ProtoReflect.Descriptor instead.
 func (*DepositRequest) Descriptor() ([]byte, []int) {
-	return file_market_market_proto_rawDescGZIP(), []int{0}
+	return file_market_market_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *DepositRequest) GetAccountId() string {
@@ -83,7 +187,7 @@ type DepositResponse struct {
 
 func (x *DepositResponse) Reset() {
 	*x = DepositResponse{}
-	mi := &file_market_market_proto_msgTypes[1]
+	mi := &file_market_market_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -95,7 +199,7 @@ func (x *DepositResponse) String() string {
 func (*DepositResponse) ProtoMessage() {}
 
 func (x *DepositResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_market_market_proto_msgTypes[1]
+	mi := &file_market_market_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -108,7 +212,7 @@ func (x *DepositResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DepositResponse.ProtoReflect.Descriptor instead.
 func (*DepositResponse) Descriptor() ([]byte, []int) {
-	return file_market_market_proto_rawDescGZIP(), []int{1}
+	return file_market_market_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *DepositResponse) GetAccountId() string {
@@ -134,7 +238,7 @@ type GetBalanceRequest struct {
 
 func (x *GetBalanceRequest) Reset() {
 	*x = GetBalanceRequest{}
-	mi := &file_market_market_proto_msgTypes[2]
+	mi := &file_market_market_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -146,7 +250,7 @@ func (x *GetBalanceRequest) String() string {
 func (*GetBalanceRequest) ProtoMessage() {}
 
 func (x *GetBalanceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_market_market_proto_msgTypes[2]
+	mi := &file_market_market_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -159,7 +263,7 @@ func (x *GetBalanceRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBalanceRequest.ProtoReflect.Descriptor instead.
 func (*GetBalanceRequest) Descriptor() ([]byte, []int) {
-	return file_market_market_proto_rawDescGZIP(), []int{2}
+	return file_market_market_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *GetBalanceRequest) GetAccountId() string {
@@ -179,7 +283,7 @@ type GetBalanceResponse struct {
 
 func (x *GetBalanceResponse) Reset() {
 	*x = GetBalanceResponse{}
-	mi := &file_market_market_proto_msgTypes[3]
+	mi := &file_market_market_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -191,7 +295,7 @@ func (x *GetBalanceResponse) String() string {
 func (*GetBalanceResponse) ProtoMessage() {}
 
 func (x *GetBalanceResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_market_market_proto_msgTypes[3]
+	mi := &file_market_market_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -204,7 +308,7 @@ func (x *GetBalanceResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetBalanceResponse.ProtoReflect.Descriptor instead.
 func (*GetBalanceResponse) Descriptor() ([]byte, []int) {
-	return file_market_market_proto_rawDescGZIP(), []int{3}
+	return file_market_market_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *GetBalanceResponse) GetAccountId() string {
@@ -225,7 +329,16 @@ var File_market_market_proto protoreflect.FileDescriptor
 
 const file_market_market_proto_rawDesc = "" +
 	"\n" +
-	"\x13market/market.proto\x12\x06market\"G\n" +
+	"\x13market/market.proto\x12\x06market\"H\n" +
+	"\x0fWithdrawRequest\x12\x1d\n" +
+	"\n" +
+	"account_id\x18\x01 \x01(\tR\taccountId\x12\x16\n" +
+	"\x06amount\x18\x02 \x01(\x03R\x06amount\"R\n" +
+	"\x10WithdrawResponse\x12\x1d\n" +
+	"\n" +
+	"account_id\x18\x01 \x01(\tR\taccountId\x12\x1f\n" +
+	"\vnew_balance\x18\x02 \x01(\x03R\n" +
+	"newBalance\"G\n" +
 	"\x0eDepositRequest\x12\x1d\n" +
 	"\n" +
 	"account_id\x18\x01 \x01(\tR\taccountId\x12\x16\n" +
@@ -241,11 +354,12 @@ const file_market_market_proto_rawDesc = "" +
 	"\x12GetBalanceResponse\x12\x1d\n" +
 	"\n" +
 	"account_id\x18\x01 \x01(\tR\taccountId\x12\x18\n" +
-	"\abalance\x18\x02 \x01(\x03R\abalance2\x8d\x01\n" +
+	"\abalance\x18\x02 \x01(\x03R\abalance2\xce\x01\n" +
 	"\x06Market\x12E\n" +
 	"\n" +
 	"GetBalance\x12\x19.market.GetBalanceRequest\x1a\x1a.market.GetBalanceResponse\"\x00\x12<\n" +
-	"\aDeposit\x12\x16.market.DepositRequest\x1a\x17.market.DepositResponse\"\x00B\x13Z\x11foldmarket/marketb\x06proto3"
+	"\aDeposit\x12\x16.market.DepositRequest\x1a\x17.market.DepositResponse\"\x00\x12?\n" +
+	"\bWithdraw\x12\x17.market.WithdrawRequest\x1a\x18.market.WithdrawResponse\"\x00B\x13Z\x11foldmarket/marketb\x06proto3"
 
 var (
 	file_market_market_proto_rawDescOnce sync.Once
@@ -259,20 +373,24 @@ func file_market_market_proto_rawDescGZIP() []byte {
 	return file_market_market_proto_rawDescData
 }
 
-var file_market_market_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_market_market_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_market_market_proto_goTypes = []any{
-	(*DepositRequest)(nil),     // 0: market.DepositRequest
-	(*DepositResponse)(nil),    // 1: market.DepositResponse
-	(*GetBalanceRequest)(nil),  // 2: market.GetBalanceRequest
-	(*GetBalanceResponse)(nil), // 3: market.GetBalanceResponse
+	(*WithdrawRequest)(nil),    // 0: market.WithdrawRequest
+	(*WithdrawResponse)(nil),   // 1: market.WithdrawResponse
+	(*DepositRequest)(nil),     // 2: market.DepositRequest
+	(*DepositResponse)(nil),    // 3: market.DepositResponse
+	(*GetBalanceRequest)(nil),  // 4: market.GetBalanceRequest
+	(*GetBalanceResponse)(nil), // 5: market.GetBalanceResponse
 }
 var file_market_market_proto_depIdxs = []int32{
-	2, // 0: market.Market.GetBalance:input_type -> market.GetBalanceRequest
-	0, // 1: market.Market.Deposit:input_type -> market.DepositRequest
-	3, // 2: market.Market.GetBalance:output_type -> market.GetBalanceResponse
-	1, // 3: market.Market.Deposit:output_type -> market.DepositResponse
-	2, // [2:4] is the sub-list for method output_type
-	0, // [0:2] is the sub-list for method input_type
+	4, // 0: market.Market.GetBalance:input_type -> market.GetBalanceRequest
+	2, // 1: market.Market.Deposit:input_type -> market.DepositRequest
+	0, // 2: market.Market.Withdraw:input_type -> market.WithdrawRequest
+	5, // 3: market.Market.GetBalance:output_type -> market.GetBalanceResponse
+	3, // 4: market.Market.Deposit:output_type -> market.DepositResponse
+	1, // 5: market.Market.Withdraw:output_type -> market.WithdrawResponse
+	3, // [3:6] is the sub-list for method output_type
+	0, // [0:3] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -289,7 +407,7 @@ func file_market_market_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_market_market_proto_rawDesc), len(file_market_market_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

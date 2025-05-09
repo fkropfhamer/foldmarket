@@ -40,13 +40,39 @@ func (s *marketServer) Deposit(ctx context.Context, req *pb.DepositRequest) (*pb
 
 	eventData := kurrentdb.EventData{
 		ContentType: kurrentdb.ContentTypeJson,
-		EventType:   "DepositEvent",
+		EventType:   event_stream.DepositEventType,
 		Data:        data,
 	}
 
 	_, err = s.es.AppendToStream(context.Background(), "market-stream", kurrentdb.AppendToStreamOptions{}, eventData)
 
 	return &pb.DepositResponse{
+		AccountId:  req.AccountId,
+		NewBalance: req.Amount,
+	}, nil
+}
+
+func (s *marketServer) Withdraw(ctx context.Context, req *pb.WithdrawRequest) (*pb.WithdrawResponse, error) {
+	withdrawEvent := event_stream.WithdrawEvent{
+		AccountId: req.AccountId,
+		Amount:    req.Amount,
+	}
+
+	data, err := json.Marshal(withdrawEvent)
+
+	if err != nil {
+		panic(err)
+	}
+
+	eventData := kurrentdb.EventData{
+		ContentType: kurrentdb.ContentTypeJson,
+		EventType:   event_stream.WithdrawEventType,
+		Data:        data,
+	}
+
+	_, err = s.es.AppendToStream(context.Background(), "market-stream", kurrentdb.AppendToStreamOptions{}, eventData)
+
+	return &pb.WithdrawResponse{
 		AccountId:  req.AccountId,
 		NewBalance: req.Amount,
 	}, nil
