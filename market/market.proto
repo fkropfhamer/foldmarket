@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+option go_package = "foldmarket/market";
+
+package market;
+
+service Market {
+    rpc GetBalance (GetBalanceRequest) returns (GetBalanceResponse) {}
+    rpc Deposit (DepositRequest) returns (DepositResponse) {}
+}
+
+message DepositRequest {
+    string account_id = 1;
+    double amount = 2;
+}
+
+message DepositResponse {
+    string account_id = 1;
+    double new_balance = 2;
+}
+
+message GetBalanceRequest {
+    string account_id = 1;
+}
+
+message GetBalanceResponse {
+    string account_id = 1;
+    double balance = 2;
+}
+
