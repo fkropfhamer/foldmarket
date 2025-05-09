@@ -2,19 +2,21 @@ package main
 
 import (
 	context "context"
+	"encoding/json"
 	"fmt"
 	"net"
-	sync "sync"
 
+	"github.com/kurrent-io/KurrentDB-Client-Go/kurrentdb"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 
+	"foldmarket/event_stream"
 	pb "foldmarket/market"
 )
 
 type marketServer struct {
 	pb.UnimplementedMarketServer
-	mu sync.Mutex
+	es *kurrentdb.Client
 }
 
 func (s *marketServer) GetBalance(ctx context.Context, req *pb.GetBalanceRequest) (*pb.GetBalanceResponse, error) {
@@ -25,23 +27,44 @@ func (s *marketServer) GetBalance(ctx context.Context, req *pb.GetBalanceRequest
 }
 
 func (s *marketServer) Deposit(ctx context.Context, req *pb.DepositRequest) (*pb.DepositResponse, error) {
+	depositEvent := event_stream.DepositEvent{
+		AccountId: req.AccountId,
+		Amount:    req.Amount,
+	}
+
+	data, err := json.Marshal(depositEvent)
+
+	if err != nil {
+		panic(err)
+	}
+
+	eventData := kurrentdb.EventData{
+		ContentType: kurrentdb.ContentTypeJson,
+		EventType:   "DepositEvent",
+		Data:        data,
+	}
+
+	_, err = s.es.AppendToStream(context.Background(), "market-stream", kurrentdb.AppendToStreamOptions{}, eventData)
+
 	return &pb.DepositResponse{
 		AccountId:  req.AccountId,
 		NewBalance: req.Amount,
 	}, nil
 }
 
-func newServer() *marketServer {
-	s := &marketServer{}
+func newServer(es *kurrentdb.Client) *marketServer {
+	s := &marketServer{es: es}
 	return s
 }
 
 func main() {
 	fmt.Println("Hello, World!")
 
+	es, _ := event_stream.GetEventStreamClient()
+
 	lis, _ := net.Listen("tcp", "localhost:50051")
 	grpcServer := grpc.NewServer()
-	pb.RegisterMarketServer(grpcServer, newServer())
+	pb.RegisterMarketServer(grpcServer, newServer(es))
 
 	reflection.Register(grpcServer)
 

@@ -11,12 +11,12 @@ service Market {
 
 message DepositRequest {
     string account_id = 1;
-    double amount = 2;
+    int64 amount = 2;
 }
 
 message DepositResponse {
     string account_id = 1;
-    double new_balance = 2;
+    int64 new_balance = 2;
 }
 
 message GetBalanceRequest {
@@ -25,6 +25,6 @@ message GetBalanceRequest {
 
 message GetBalanceResponse {
     string account_id = 1;
-    double balance = 2;
+    int64 balance = 2;
 }
 

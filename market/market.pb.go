@@ -24,7 +24,7 @@ const (
 type DepositRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	AccountId     string                 `protobuf:"bytes,1,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"`
-	Amount        float64                `protobuf:"fixed64,2,opt,name=amount,proto3" json:"amount,omitempty"`
+	Amount        int64                  `protobuf:"varint,2,opt,name=amount,proto3" json:"amount,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -66,7 +66,7 @@ func (x *DepositRequest) GetAccountId() string {
 	return ""
 }
 
-func (x *DepositRequest) GetAmount() float64 {
+func (x *DepositRequest) GetAmount() int64 {
 	if x != nil {
 		return x.Amount
 	}
@@ -76,7 +76,7 @@ func (x *DepositRequest) GetAmount() float64 {
 type DepositResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	AccountId     string                 `protobuf:"bytes,1,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"`
-	NewBalance    float64                `protobuf:"fixed64,2,opt,name=new_balance,json=newBalance,proto3" json:"new_balance,omitempty"`
+	NewBalance    int64                  `protobuf:"varint,2,opt,name=new_balance,json=newBalance,proto3" json:"new_balance,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -118,7 +118,7 @@ func (x *DepositResponse) GetAccountId() string {
 	return ""
 }
 
-func (x *DepositResponse) GetNewBalance() float64 {
+func (x *DepositResponse) GetNewBalance() int64 {
 	if x != nil {
 		return x.NewBalance
 	}
@@ -172,7 +172,7 @@ func (x *GetBalanceRequest) GetAccountId() string {
 type GetBalanceResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	AccountId     string                 `protobuf:"bytes,1,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"`
-	Balance       float64                `protobuf:"fixed64,2,opt,name=balance,proto3" json:"balance,omitempty"`
+	Balance       int64                  `protobuf:"varint,2,opt,name=balance,proto3" json:"balance,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -214,7 +214,7 @@ func (x *GetBalanceResponse) GetAccountId() string {
 	return ""
 }
 
-func (x *GetBalanceResponse) GetBalance() float64 {
+func (x *GetBalanceResponse) GetBalance() int64 {
 	if x != nil {
 		return x.Balance
 	}
@@ -229,11 +229,11 @@ const file_market_market_proto_rawDesc = "" +
 	"\x0eDepositRequest\x12\x1d\n" +
 	"\n" +
 	"account_id\x18\x01 \x01(\tR\taccountId\x12\x16\n" +
-	"\x06amount\x18\x02 \x01(\x01R\x06amount\"Q\n" +
+	"\x06amount\x18\x02 \x01(\x03R\x06amount\"Q\n" +
 	"\x0fDepositResponse\x12\x1d\n" +
 	"\n" +
 	"account_id\x18\x01 \x01(\tR\taccountId\x12\x1f\n" +
-	"\vnew_balance\x18\x02 \x01(\x01R\n" +
+	"\vnew_balance\x18\x02 \x01(\x03R\n" +
 	"newBalance\"2\n" +
 	"\x11GetBalanceRequest\x12\x1d\n" +
 	"\n" +
@@ -241,7 +241,7 @@ const file_market_market_proto_rawDesc = "" +
 	"\x12GetBalanceResponse\x12\x1d\n" +
 	"\n" +
 	"account_id\x18\x01 \x01(\tR\taccountId\x12\x18\n" +
-	"\abalance\x18\x02 \x01(\x01R\abalance2\x8d\x01\n" +
+	"\abalance\x18\x02 \x01(\x03R\abalance2\x8d\x01\n" +
 	"\x06Market\x12E\n" +
 	"\n" +
 	"GetBalance\x12\x19.market.GetBalanceRequest\x1a\x1a.market.GetBalanceResponse\"\x00\x12<\n" +
