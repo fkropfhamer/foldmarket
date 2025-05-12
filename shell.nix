@@ -9,5 +9,8 @@ pkgs.mkShell {
     pkgs.grpcurl
     pkgs.sqlc
     pkgs.go-migrate
+    pkgs.elixir
+    pkgs.erlang
+    pkgs.nodejs
   ];
 }
